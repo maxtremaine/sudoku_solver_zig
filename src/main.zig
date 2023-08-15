@@ -1,8 +1,16 @@
 const std = @import("std");
+const print = std.debug.print;
+
+const Sudoku = @import("./Sudoku.zig").Sudoku;
 
 pub fn main() !void {
-    // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
+    const emptyGrid = [_]u8{0} ** 81;
+    const testPuzzle = (Sudoku{ .grid = emptyGrid })
+        .changeCell(5, 2)
+        .changeCell(6, 4);
+    for (testPuzzle.grid) |item| {
+        print("number: {}\n", .{item});
+    }
 
     // stdout is for the actual output of your application, for example if you
     // are implementing gzip, then only the compressed bytes should be sent to
@@ -14,6 +22,10 @@ pub fn main() !void {
     try stdout.print("Run `zig build test` to run the tests.\n", .{});
 
     try bw.flush(); // don't forget to flush!
+}
+
+test {
+    std.testing.refAllDeclsRecursive(@This());
 }
 
 test "simple test" {
