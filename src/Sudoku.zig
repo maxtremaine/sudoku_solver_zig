@@ -10,11 +10,9 @@ pub const Sudoku = struct {
     }
 
     pub fn getGroupValues(self: Sudoku, group: [9]u8) [9]u8 {
-        var values = [_]u8{0} ** 9;
+        var values: [9]u8 = undefined;
         for(group) | groupIndex, i | {
-            if(self.grid[groupIndex] != 0) {
-                values[i] = self.grid[groupIndex];
-            }
+            values[i] = self.grid[groupIndex];
         }
         return values;
     }
