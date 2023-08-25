@@ -63,12 +63,15 @@ test "changes cell values" {
 }
 
 test "gets group values" {
+    // Initiate underlying variables
     const testGroup = groups[0];
     const emptyList = [_]u8{0} ** 81;
     var testPuzzle = Sudoku{ .grid = emptyList };
+    // Set up test
     testPuzzle = testPuzzle.changeCell(0, 5);
     const testValues = testPuzzle.getGroupValues(testGroup);
     const correctAnswer = [_]u8{ 5, 0, 0, 0, 0, 0, 0, 0, 0, };
+    
     for(testValues) | value, i | {
         try expect(value == correctAnswer[i]);
     }
