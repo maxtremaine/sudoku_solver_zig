@@ -3,13 +3,13 @@ const expect = @import("std").testing.expect;
 pub const Sudoku = struct {
     grid: [81]u8,
 
-    pub fn changeCell(self: Sudoku, index: u8, value: u8) Sudoku {
+    fn changeCell(self: Sudoku, index: u8, value: u8) Sudoku {
         var newGrid = self.grid;
         newGrid[index] = value;
         return Sudoku{ .grid = newGrid };
     }
 
-    pub fn getGroupValues(self: Sudoku, group: [9]u8) [9]u8 {
+    fn getGroupValues(self: Sudoku, group: [9]u8) [9]u8 {
         var values: [9]u8 = undefined;
         for(group) | groupIndex, i | {
             values[i] = self.grid[groupIndex];
