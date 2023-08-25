@@ -18,7 +18,7 @@ pub fn hasDuplicates(list: [9]u8) bool {
 }
 
 test "identifies lists with duplicates" {
-    const noDupes = [_]u8{ 1, 2, 3, 0, 5, 6, 7, 8, 9 };
+    const noDupes = [_]u8{ 170, 2, 3, 0, 5, 6, 7, 8, 9 };
     const hasDupes = [_]u8{1, 2, 3, 3, 3, 3, 3, 3, 3 };
     try expect(hasDuplicates(noDupes) == false);
     try expect(hasDuplicates(hasDupes) == true);
