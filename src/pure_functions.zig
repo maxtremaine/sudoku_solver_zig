@@ -1,18 +1,13 @@
 const expect = @import("std").testing.expect;
 
 pub fn hasDuplicates(list: [9]u8) bool {
-    var pastValues: [9]u8 = undefined;
-    var check170 = false;
+    var pastValues = [_]u8{0} ** 9;
     for(list) |value, i| {
         if(i == 0) {
             pastValues[0] = value;
             continue;
         }
-        if(value == 170) {
-            if(check170) {
-                return true;
-            }
-            check170 = true;
+        if(value == 0) {
             continue;
         }
         for(pastValues) |pastValue| {
