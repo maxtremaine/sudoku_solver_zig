@@ -2,11 +2,19 @@ const expect = @import("std").testing.expect;
 
 pub const Sudoku = struct {
     grid: [81]u8,
+    blanks: u8,
 
     pub fn changeCell(self: Sudoku, index: u8, value: u8) Sudoku {
+        var newBlanks = self.blanks;
+        if(self.grid[index] == 0 and value != 0) {
+            newBlanks += 1;
+        }
+        if(value == 0 and self.grid[index] != 0) {
+            newBlanks += 1;
+        }
         var newGrid = self.grid;
         newGrid[index] = value;
-        return Sudoku{ .grid = newGrid };
+        return Sudoku{ .grid = newGrid, .blanks = newBlanks };
     }
 
     fn getGroupValues(self: Sudoku, group: [9]u8) [9]u8 {
@@ -53,7 +61,7 @@ const groups = [27][9]u8{
 
 test "changes cell values" {
     var zeros = [_]u8{0} ** 81;
-    const testPuzzle = Sudoku{ .grid = zeros };
+    const testPuzzle = Sudoku{ .grid = zeros, .blanks = 0 };
     const newPuzzle = testPuzzle.changeCell(5, 1);
     var answerGrid: [81]u8 = zeros;
     answerGrid[5] = 1;
@@ -69,7 +77,7 @@ test "gets group values" {
     // Initiate underlying variables
     const testGroup = [_]u8{ 0, 1, 2, 3, 4, 5, 6, 7, 8 };
     const emptyList = [_]u8{0} ** 81;
-    const testPuzzle = (Sudoku{ .grid = emptyList })
+    const testPuzzle = (Sudoku{ .grid = emptyList, .blanks = 0 })
         .changeCell(0, 5);
     // Set up test
     const testValues = testPuzzle.getGroupValues(testGroup);
