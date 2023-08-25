@@ -4,21 +4,10 @@ const print = std.debug.print;
 const Sudoku = @import("./Sudoku.zig").Sudoku;
 
 pub fn main() !void {
-    const emptyGrid = [_]u8{0} ** 81;
-    const testPuzzle = (Sudoku{ .grid = emptyGrid, .blanks = 0 })
-        .changeCell(5, 2)
-        .changeCell(6, 4);
-    for (testPuzzle.grid) |item| {
-        print("number: {}\n", .{item});
-    }
-
-    var reallyEmptyGrid = [_]u8{0} ** 9;
-    for(reallyEmptyGrid) |emptyItem| {
-        print("{}", .{emptyItem});
-    }
-
-    const emptySudokus: [4]Sudoku = undefined;
-    print("\n{}", .{emptySudokus[3]});
+    const data = @embedFile("io/start_puzzle.sudoku");
+    for(data) |line| {
+        print("{c}", .{line});
+    } 
 }
 
 test {
