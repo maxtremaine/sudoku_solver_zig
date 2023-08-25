@@ -52,15 +52,15 @@ const groups = [27][9]u8{
 };
 
 test "changes cell values" {
-    var emptyList = [_]u8{0} ** 81;
-    const testPuzzle = Sudoku{ .grid = emptyList };
+    var zeros = [_]u8{0} ** 81;
+    const testPuzzle = Sudoku{ .grid = zeros };
     const newPuzzle = testPuzzle.changeCell(5, 1);
-    var answerGrid: [81]u8 = emptyList;
+    var answerGrid: [81]u8 = zeros;
     answerGrid[5] = 1;
     for (answerGrid) |answerValue, index| {
         try expect(newPuzzle.grid[index] == answerValue);
     }
-    for (emptyList) |zero, index| {
+    for (zeros) |zero, index| {
         try expect(testPuzzle.grid[index] == zero);
     }
 }
