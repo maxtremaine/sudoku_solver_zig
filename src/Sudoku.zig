@@ -60,6 +60,9 @@ test "changes cell values" {
     for (answerGrid) |answerValue, index| {
         try expect(newPuzzle.grid[index] == answerValue);
     }
+    for (emptyList) |zero, index| {
+        try expect(testPuzzle.grid[index] == zero);
+    }
 }
 
 test "gets group values" {
