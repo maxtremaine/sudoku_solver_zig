@@ -3,7 +3,7 @@ const expect = @import("std").testing.expect;
 pub const Sudoku = struct {
     grid: [81]u8,
 
-    fn changeCell(self: Sudoku, index: u8, value: u8) Sudoku {
+    pub fn changeCell(self: Sudoku, index: u8, value: u8) Sudoku {
         var newGrid = self.grid;
         newGrid[index] = value;
         return Sudoku{ .grid = newGrid };
