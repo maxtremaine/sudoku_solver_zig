@@ -69,9 +69,9 @@ test "gets group values" {
     // Initiate underlying variables
     const testGroup = [_]u8{ 0, 1, 2, 3, 4, 5, 6, 7, 8 };
     const emptyList = [_]u8{0} ** 81;
-    var testPuzzle = Sudoku{ .grid = emptyList };
+    const testPuzzle = (Sudoku{ .grid = emptyList })
+        .changeCell(0, 5);
     // Set up test
-    testPuzzle = testPuzzle.changeCell(0, 5);
     const testValues = testPuzzle.getGroupValues(testGroup);
     const correctAnswer = [_]u8{ 5, 0, 0, 0, 0, 0, 0, 0, 0, };
     
