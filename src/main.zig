@@ -5,9 +5,9 @@ const Sudoku = @import("./Sudoku.zig").Sudoku;
 
 pub fn main() !void {
     const data = @embedFile("io/start_puzzle.sudoku");
-    for(data) |line| {
+    for (data) |line| {
         print("{c}", .{line});
-    } 
+    }
 }
 
 test {

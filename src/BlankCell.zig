@@ -15,13 +15,13 @@ pub const BlankCell = struct {
         var df: u8 = 9;
         var possibleValues = [_]bool{true} ** 10;
 
-        for(groups) |group| {
-            for(group) |groupIndex| {
-                if(groupIndex == index) {
-                    for(group) |addIndex| {
+        for (groups) |group| {
+            for (group) |groupIndex| {
+                if (groupIndex == index) {
+                    for (group) |addIndex| {
                         const relatedValue = grid[addIndex];
-                        
-                        if(relatedValue != 0 and possibleValues[relatedValue] == true) {
+
+                        if (relatedValue != 0 and possibleValues[relatedValue] == true) {
                             df -= 1;
                             possibleValues[relatedValue] = false;
                         }
@@ -31,7 +31,7 @@ pub const BlankCell = struct {
             }
         }
 
-        if(df == 1) {
+        if (df == 1) {
             possibleValues[0] = false;
         }
 
